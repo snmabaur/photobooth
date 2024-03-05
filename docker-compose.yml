@@ -3,11 +3,22 @@ version: "3.9"
 services:
   photobooth:
     build: .
+    platform: linux/arm64
     volumes:
-      - ./:/app
-      - /app/resources/css/
-      - /app/resources/js/
-      - /app/vendor/
+      - ./admin:/var/www/html/admin:delegated
+      - ./lib:/var/www/html/lib:delegated
+      - ./resources/lang:/var/www/html/resources/lang:delegated
+      - ./assets:/var/www/html/assets:delegated
+      - ./config:/var/www/html/config:delegated
+      - ./template:/var/www/html/template:delegated
+      - ./api:/var/www/html/api:delegated
+      - ./data:/var/www/html/data:delegated
+      - ./src:/var/www/html/src:delegated
+      - /var/www/html/resources
+
     ports:
       - "80:80"
-      - "443:443"
+
+    environment:
+      - COMPOSER_VERSION=2
+
