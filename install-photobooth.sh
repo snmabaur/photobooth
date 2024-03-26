@@ -622,7 +622,7 @@ function add_git_remote() {
         fi
     else
         info "### Adding photoboothproject remote..."
-        sudo -u www-data git remote add photoboothproject https://github.com/snmabaur/photobooth
+        sudo -u www-data git remote add origin https://github.com/snmabaur/photobooth
     fi
 
 
