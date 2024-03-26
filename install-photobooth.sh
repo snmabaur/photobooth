@@ -618,7 +618,7 @@ function add_git_remote() {
     sudo git remote remove photoboothproject
     sudo git remote remove origin
 
-    if sudo -u www-data git config remote.photoboothproject.url >/dev/null; then
+    if sudo -u www-data git config remote.origin.url >/dev/null; then
         info "### photoboothproject remote exist already"
         if sudo -u www-data git config remote.origin.url == "git@github.com:andi34/photobooth" || sudo -u www-data git config remote.origin.url == "https://github.com/andi34/photobooth.git"; then
             info "origin remote is andi34"
@@ -687,7 +687,7 @@ function start_git_install() {
 function start_install() {
     info "### Now we are going to install Photobooth."
     if [ "$GIT_INSTALL" = true ]; then
-        sudo -u www-data git clone https://github.com/PhotoboothProject/photobooth "$INSTALLFOLDER"
+        sudo -u www-data git clone https://github.com/snmabaur/photobooth "$INSTALLFOLDER"
         cd "$INSTALLFOLDERPATH"
         add_git_remote
         start_git_install
