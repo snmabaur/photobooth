@@ -643,8 +643,8 @@ function start_git_install() {
     info "### We are installing/updating Photobooth via git."
     info "### Ignoring filemode changes on git."
     sudo -u www-data git config core.fileMode false
-    sudo -u www-data git fetch photoboothproject "$BRANCH"
-    sudo -u www-data git checkout photoboothproject/"$BRANCH"
+    sudo -u www-data git fetch photoboothproject "main"
+    sudo -u www-data git checkout photoboothproject/"main"
 
     sudo -u www-data git submodule update --init
 
