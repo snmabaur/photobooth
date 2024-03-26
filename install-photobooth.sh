@@ -624,16 +624,18 @@ function add_git_remote() {
         info "### Adding photoboothproject remote..."
         sudo -u www-data git remote add photoboothproject https://github.com/PhotoboothProject/photobooth.git
     fi
-    sudo -u www-data git remote origin
-    sudo -u www-data git remote photoboothproject
+    sudo -u www-data git remote remove photoboothproject
+    sudo -u www-data git remote remove photoboothproject
     sudo -u www-data git remote add photoboothproject https://github.com/snmabaur/photobooth
 
     if sudo -u www-data git config remote.origin.url == "https://github.com/snmabaur/photobooth"; then
         info "origin remote is SNMABAUR"
     fi
     if sudo -u www-data git config remote.photoboothproject.url == "https://github.com/snmabaur/photobooth"; then
-            info "photoboothproject remote is SNMABAUR"
-        fi
+        info "photoboothproject remote is SNMABAUR"
+    fi
+    sudo -u www-data git remote fetch
+
 }
 
 function check_git_install() {
