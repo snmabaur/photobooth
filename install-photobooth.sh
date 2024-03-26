@@ -615,8 +615,6 @@ function general_setup() {
 function add_git_remote() {
     cd "$INSTALLFOLDERPATH"/
     info "### Checking needed remote information..."
-    sudo git remote remove photoboothproject
-    sudo git remote remove origin
 
     if sudo -u www-data git config remote.origin.url >/dev/null; then
         info "### photoboothproject remote exist already"
@@ -626,6 +624,7 @@ function add_git_remote() {
     else
         info "### Adding photoboothproject remote..."
         sudo -u www-data git remote add origin https://github.com/snmabaur/photobooth
+        sudo -u www-data git remote add photoboothproject https://github.com/snmabaur/photobooth
     fi
 
 
