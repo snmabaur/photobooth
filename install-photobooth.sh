@@ -617,7 +617,7 @@ function add_git_remote() {
     info "### Checking needed remote information..."
     if sudo -u www-data git config remote.photoboothproject.url >/dev/null; then
         info "### photoboothproject remote exist already"
-        if sudo -u www-data git config remote.origin.url == "git@github.com:andi34/photobooth" || sudo -u www-data git config remote.origin.url == "https://github.com/andi34/photobooth.git"; then
+        if sudo -u www-data git config remote.photoboothproject.url == "git@github.com:andi34/photobooth" || sudo -u www-data git config remote.photoboothproject.url == "https://github.com/andi34/photobooth.git"; then
             info "origin remote is andi34"
         fi
     else
