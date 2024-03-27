@@ -13,7 +13,7 @@ DATE=$(date +"%Y%m%d-%H-%M")
 IPADDRESS=$(hostname -I | cut -d " " -f 1)
 PHOTOBOOTH_TMP_LOG="/tmp/$DATE-photobooth.txt"
 
-BRANCH="dev"
+BRANCH="main"
 GIT_INSTALL=true
 SUBFOLDER=true
 KIOSK_MODE=false
@@ -218,7 +218,7 @@ while true; do
         ;;
     -b | --branch)
         shift
-        if [ "$1" == "dev" ] || [ "$1" == "stable4" ]; then
+        if [ "$1" == "dev" ] || [ "$1" == "stable4" ] || [ "$1" == "main" ]; then
             BRANCH=$1
             GIT_INSTALL=true
         elif [ "$1" == "package" ]; then
@@ -227,7 +227,7 @@ while true; do
             NEEDS_NODEJS_CHECK=false
             NEEDS_NPM_CHECK=false
         else
-            BRANCH="dev"
+            BRANCH="main"
             GIT_INSTALL=true
             warn "[WARN]      Invalid branch / version!"
             warn "[WARN]      Falling back to defaults. Installing latest development branch from git."
