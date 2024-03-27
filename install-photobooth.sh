@@ -615,27 +615,15 @@ function general_setup() {
 function add_git_remote() {
     cd "$INSTALLFOLDERPATH"/
     info "### Checking needed remote information..."
-
-    if sudo -u www-data git config remote.origin.url >/dev/null; then
+    if sudo -u www-data git config remote.photoboothproject.url >/dev/null; then
         info "### photoboothproject remote exist already"
         if sudo -u www-data git config remote.origin.url == "git@github.com:andi34/photobooth" || sudo -u www-data git config remote.origin.url == "https://github.com/andi34/photobooth.git"; then
             info "origin remote is andi34"
         fi
     else
         info "### Adding photoboothproject remote..."
-        sudo -u www-data git remote add origin https://github.com/snmabaur/photobooth
         sudo -u www-data git remote add photoboothproject https://github.com/snmabaur/photobooth
     fi
-
-
-    if sudo -u www-data git config remote.origin.url == "https://github.com/snmabaur/photobooth"; then
-        info "origin remote is SNMABAUR"
-    fi
-    if sudo -u www-data git config remote.photoboothproject.url == "https://github.com/snmabaur/photobooth"; then
-        info "photoboothproject remote is SNMABAUR"
-    fi
-    sudo -u www-data git remote fetch
-
 }
 
 function check_git_install() {
