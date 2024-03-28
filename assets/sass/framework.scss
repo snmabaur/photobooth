@@ -29,6 +29,10 @@
 // Vendor
 @import 'vendor/photoswipe';
 
+// Virtual Keyboard
+@import "../../node_modules/simple-keyboard/build/css/index.css";
+@import "virtual-keyboard";
+
 // Themes
 @import 'themes/classic';
 @import 'themes/modern';

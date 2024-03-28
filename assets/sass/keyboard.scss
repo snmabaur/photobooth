@@ -1,0 +1,8 @@
+.simple-keyboard {
+  z-index: 1;
+  display: none;
+  &.show-keyboard {
+    z-index: 1;
+    display: block;
+  }
+}

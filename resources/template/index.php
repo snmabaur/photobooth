@@ -181,6 +181,7 @@ header("Cache-Control: max-age=$seconds_to_cache");
     </style>
 </head>
 <body>
+
 <header class="front-cover">{title}</header>
 
 <div class="container">
