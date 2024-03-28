@@ -8,7 +8,6 @@ use Photobooth\Utility\PathUtility;
 
     <?php include PathUtility::getAbsolutePath('template/components/start.logo.php'); ?>
     <div class="stage-inner">
-        <input id="test" name="test" type="text" class="input" placeholder="Test..."/>
         <?php if ($config['event']['enabled'] || $config['start_screen']['title_visible']): ?>
             <div class="names<?= ($config['ui']['decore_lines']) ? ' names--decoration' : '' ?>">
                 <div class="names-inner">
@@ -37,7 +36,6 @@ use Photobooth\Utility\PathUtility;
             </div>
         <?php endif; ?>
         <?php include PathUtility::getAbsolutePath('template/components/actionBtn.php'); ?>
-        <div class="simple-keyboard"></div>
     </div>
     <?php include PathUtility::getAbsolutePath('template/components/github-corner.php'); ?>
 </div>
