@@ -52,6 +52,6 @@ if ($config['picture_naming']['enabled']) {
 }
 
 echo '</div>';
-echo '</div>';
 echo '<div class="simple-keyboard"></div>';
+echo '</div>';
 echo '</div>';
