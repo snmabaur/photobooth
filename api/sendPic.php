@@ -55,14 +55,23 @@ if (!$database->isInDB($postImage)) {
 
 $mail = new PHPMailer();
 $mail->setLanguage($config['ui']['language'], '../vendor/PHPMailer/language/');
-//$mail->isSMTP();
-$mail->Host = $config['mail']['host'];
-$mail->SMTPAuth = true;
-$mail->SMTPDebug = 2;
+$mail->isSMTP();
+/*$mail->Host = $config['mail']['host'];
+$mail->SMTPAuth = false;
+$mail->SMTPDebug = 4;
 $mail->Username = $config['mail']['username'];
 $mail->Password = null;
 $mail->SMTPSecure = $config['mail']['secure'];
-$mail->Port = $config['mail']['port'];
+$mail->Port = 25;*/
+
+$mail->Host = '172.16.1.2';
+$mail->SMTPAuth = false;
+$mail->SMTPDebug =4;
+$mail->Username = 'photobooth@nationalmuseum.ch';
+$mail->Password = null;
+//$mail->SMTPSecure = 'tls';
+$mail->Port = 25;
+
 $mail->setFrom($config['mail']['fromAddress'], $config['mail']['fromName']);
 
 if (!$mail->addAddress($_POST['recipient'])) {
