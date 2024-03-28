@@ -1152,11 +1152,13 @@ const photoBooth = (function () {
 
         // ADD Virtual Keyboard
         let keyboard = window.SimpleKeyboardInstances.simpleKeyboard;
+
+
         let inputDOM = document.querySelector('.vkeyboard');
+
+
         inputDOM.addEventListener('focus', () => {
-            keyboard.setOptions({
-                theme: 'hg-theme-default show-keyboard'
-            });
+            document.querySelector('.simple-keyboard').classList.add('show-keyboard');
         });
         inputDOM.addEventListener('input', event => {
             keyboard.setInput(event.target.value);
