@@ -55,12 +55,12 @@ if (!$database->isInDB($postImage)) {
 
 $mail = new PHPMailer();
 $mail->setLanguage($config['ui']['language'], '../vendor/PHPMailer/language/');
-$mail->isSMTP();
+//$mail->isSMTP();
 $mail->Host = $config['mail']['host'];
 $mail->SMTPAuth = true;
-$mail->SMTPDebug = 0;
+$mail->SMTPDebug = 2;
 $mail->Username = $config['mail']['username'];
-$mail->Password = $config['mail']['password'];
+$mail->Password = null;
 $mail->SMTPSecure = $config['mail']['secure'];
 $mail->Port = $config['mail']['port'];
 $mail->setFrom($config['mail']['fromAddress'], $config['mail']['fromName']);
