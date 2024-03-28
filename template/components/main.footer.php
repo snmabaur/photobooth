@@ -8,7 +8,7 @@ echo '<script src="' . $assetService->getUrl('api/config.php') . '"></script>';
 echo '<script src="' . $assetService->getUrl('resources/js/tools.js') . '"></script>';
 
 echo '<script src="' . $assetService->getUrl('node_modules/simple-keyboard/build/index.js') . '"></script>';
-//echo '<script src="' . $assetService->getUrl('resources/js/keyboard.js') . '"></script>';
+echo '<script src="' . $assetService->getUrl('resources/js/keyboard.js') . '"></script>';
 
 if ($remoteBuzzer) {
     echo '<script src="' . $assetService->getUrl('node_modules/socket.io-client/dist/socket.io.min.js') . '"></script>';

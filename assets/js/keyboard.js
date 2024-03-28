@@ -42,7 +42,7 @@ $(function () {
             '{abc}': 'ABC'
         }
     });
-    let inputDOM = document.querySelector('.input');
+    let inputDOM = document.querySelector('.vkeyboard');
     /**
      * Keyboard show
      */
