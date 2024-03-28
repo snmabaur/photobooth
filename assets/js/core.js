@@ -1107,7 +1107,6 @@ const photoBooth = (function () {
                 })
                 .catch(() => {
                     message.classList.add('text-danger');
-                    message.textContent = photoboothTools.getTranslation('mailError');
                     submitButton.disabled = false;
                 });
         });

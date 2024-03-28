@@ -66,7 +66,7 @@ $mail->Port = 25;*/
 
 $mail->Host = '172.16.1.2';
 $mail->SMTPAuth = false;
-$mail->SMTPDebug = 4;
+$mail->SMTPDebug = 0;
 $mail->Username = 'photobooth@nationalmuseum.ch';
 $mail->Password = null;
 //$mail->SMTPSecure = 'tls';
