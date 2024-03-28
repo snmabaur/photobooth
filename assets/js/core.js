@@ -1151,6 +1151,16 @@ const photoBooth = (function () {
         form.appendChild(lastNameInput);
 
         // ADD Virtual Keyboard
+        let keyboard = window.SimpleKeyboardInstances.simpleKeyboard;
+        let inputDOM = document.querySelector('.vkeyboard');
+        inputDOM.addEventListener('focus', () => {
+            keyboard.setOptions({
+                theme: 'hg-theme-default show-keyboard'
+            });
+        });
+        inputDOM.addEventListener('input', event => {
+            keyboard.setInput(event.target.value);
+        });
 
         // Submit
         const submitLabel = photoboothTools.getTranslation('save');
