@@ -854,6 +854,7 @@
   "remotebuzzer:remotebuzzer_videoled": "LED for Video Button",
   "remotebuzzer:remotebuzzer_videoledgpio": "GPIO used for video LED",
   "remotebuzzerGetTrigger": "Remotebuzzer GET request trigger",
+    "mailTest": "Send Mail Test",
   "reset": "Reset",
   "reset:reset_button": "Execute config reset",
   "reset:reset_remove_config": "Delete personal configuration (my.config.inc.php)",
