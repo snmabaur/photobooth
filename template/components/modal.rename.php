@@ -15,7 +15,7 @@
                 </span>
                 <span class="modal-button--label">Save</span>
             </button>
-            <button class="modal-button rotaryfocus" data-severity="default">
+            <button id="modal_rename_close" class="modal-button rotaryfocus" data-severity="default">
                 <span class="modal-button--icon">
                   <i class="fa fa-times"></i>
                 </span>

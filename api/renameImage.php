@@ -23,12 +23,11 @@ try {
     echo json_encode(['error' => $e->getMessage()]);
     die();
 }
-
+$logData = [];
 $file = $_POST['image'];
 $fullName = filter_var($_POST['fullName'], FILTER_UNSAFE_RAW);
 $newFileName = Helper::slugify($fullName) . '_' . $file;
 $logData['success'] = false;
-$logData = [];
 
 if(file_exists($config['foldersAbs']['namedImages'] . DIRECTORY_SEPARATOR . $newFileName)) {
     $logData['fileExists'] = 'Same image already exists';

@@ -6,7 +6,6 @@ use Photobooth\Utility\PathUtility;
 <!-- Start Page -->
 <div class="stage stage--start rotarygroup" data-stage="start">
     <?php include PathUtility::getAbsolutePath('template/components/start.logo.php'); ?>
-    <?php include PathUtility::getAbsolutePath('template/components/modal.rename.php'); ?>
     <div class="stage-inner">
         <?php if ($config['event']['enabled'] || $config['start_screen']['title_visible']): ?>
             <div class="names<?= ($config['ui']['decore_lines']) ? ' names--decoration' : '' ?>">
