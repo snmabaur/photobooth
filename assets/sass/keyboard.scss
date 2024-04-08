@@ -1,8 +1,18 @@
-.simple-keyboard {
-  z-index: 1;
-  display: none;
+body {
+  top: 0;
+  .simple-keyboard {
+    z-index: 99999999999;
+    position: fixed;
+    bottom: 0;
+    display: none;
+  }
   &.show-keyboard {
-    z-index: 1;
-    display: block;
+    top: -185px;
+    .simple-keyboard {
+      display: block;
+    }
+    .modal {
+      top: -185px;
+    }
   }
 }
