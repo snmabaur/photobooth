@@ -1056,29 +1056,20 @@ const photoBooth = (function () {
     };
 
     api.saveImageWithName = function (image) {
-        photoboothTools.modal.open('mail');
-        const body = photoboothTools.modal.element.querySelector('.modal-body');
-        const buttonbar = photoboothTools.modal.element.querySelector('.modal-buttonbar');
+        const modalRename = document.getElementById('modal_rename');
+        const message = document.getElementById('set-image-name-message');
+        const form = document.getElementById('set-image-name');
+        modalRename.style.display = 'flex';
+        message.textContent = ''
 
-        // Text
-        const text = document.createElement('p');
-        text.textContent = photoboothTools.getTranslation('insertPreLastName');
-        body.appendChild(text);
-
-        // Form
-        const form = document.createElement('form');
-        form.id = 'set-image-name';
-        form.classList.add('form');
         form.addEventListener('submit', (event) => {
             event.preventDefault();
             if (document.querySelector('#send-mail-message')) {
                 document.querySelector('#send-mail-message').remove();
             }
-            const message = document.createElement('div');
-            message.id = 'set-image-name-message';
-            message.classList.add('form-message');
-            form.appendChild(message);
-            const submitButton = document.querySelector('#set-image-name-submit');
+
+
+            const submitButton = document.getElementById('set-image-name-submit');
             submitButton.diabled = true;
 
             fetch(config.foldersPublic.api + '/renameImage.php', {
@@ -1089,11 +1080,10 @@ const photoBooth = (function () {
                 .then((data) => {
                     console.log(data);
                     if (data.success) {
-                        console.log('TRUE');
                         // document.querySelector('#send-mail-recipient').value = '';
                         message.classList.add('text-success');
                         message.textContent = photoboothTools.getTranslation('nameImage:success');
-                        setTimeout(() => photoboothTools.modal.close(), 3000);
+                        setTimeout(() => modalRename.style.display = 'none', 3000);
                     } else {
                         message.classList.add('text-danger');
                         if (data.fileExists) {
@@ -1107,183 +1097,20 @@ const photoBooth = (function () {
                 })
                 .catch(() => {
                     message.classList.add('text-danger');
+                    message.textContent = photoboothTools.getTranslation('nameImage:fail');
                     submitButton.disabled = false;
+                    setTimeout(() => modalRename.style.display = 'none', 3000);
                 });
         });
-        body.appendChild(form);
-
-        // Image
-        const imageInput = document.createElement('input');
-        imageInput.type = 'hidden';
-        imageInput.name = 'image';
+        // Set Image name
+        const imageInput = document.getElementById('modal_rename_image');
         imageInput.value = image;
-        form.appendChild(imageInput);
 
-        // FirstName
-        const firstNameInput = document.createElement('input');
-        firstNameInput.classList.add('form-input');
-        firstNameInput.classList.add('vkeyboard');
-        firstNameInput.id = 'firstName';
-        firstNameInput.type = 'text';
-        firstNameInput.name = 'firstName';
-        firstNameInput.placeholder = photoboothTools.getTranslation('firstName');
-        // firstNameInput.setAttribute('required','');
-        firstNameInput.addEventListener('focusin', (event) => {
-            // workaround for photoswipe blocking input
-            event.stopImmediatePropagation();
-        });
-        form.appendChild(firstNameInput);
-
-        // LastName
-        const lastNameInput = document.createElement('input');
-        lastNameInput.classList.add('form-input');
-        lastNameInput.classList.add('vkeyboard');
-        lastNameInput.id = 'lastName';
-        lastNameInput.type = 'text';
-        lastNameInput.name = 'lastName';
-        // lastNameInput.setAttribute('required','');
-        lastNameInput.placeholder = photoboothTools.getTranslation('lastName');
-
-        lastNameInput.addEventListener('focusin', (event) => {
-            // workaround for photoswipe blocking input
-            event.stopImmediatePropagation();
-        });
-        form.appendChild(lastNameInput);
-
-        // ADD Virtual Keyboard
-        let Keyboard = window.SimpleKeyboard.default;
-        let defaultTheme = 'hg-theme-default';
-
-
-        let keyboard = new Keyboard({
-            onChange: input => onChange(input),
-            onKeyPress: button => onKeyPress(button),
-            preventMouseUpDefault: true,
-            autoUseTouchEvents: true,
-            mergeDisplay: true,
-            layoutName: 'default',
-            layout: {
-                default: [
-                    'q w e r t y u i o p',
-                    'a s d f g h j k l',
-                    '{shift} z x c v b n m {backspace}',
-                    '{numbers} {space} {ent}'
-                ],
-                shift: [
-                    'Q W E R T Y U I O P',
-                    'A S D F G H J K L',
-                    '{shift} Z X C V B N M {backspace}',
-                    '{numbers} {space} {ent}'
-                ],
-                numbers: ['1 2 3', '4 5 6', '7 8 9', '{abc} 0 {backspace}']
-            },
-            display: {
-                '{numbers}': '123',
-                '{ent}': 'return',
-                '{escape}': 'esc ⎋',
-                '{tab}': 'tab ⇥',
-                '{backspace}': '⌫',
-                '{capslock}': 'caps lock ⇪',
-                '{shift}': '⇧',
-                '{controlleft}': 'ctrl ⌃',
-                '{controlright}': 'ctrl ⌃',
-                '{altleft}': 'alt ⌥',
-                '{altright}': 'alt ⌥',
-                '{metaleft}': 'cmd ⌘',
-                '{metaright}': 'cmd ⌘',
-                '{abc}': 'ABC'
-            }
-        });
-        let inputDOM = document.querySelector('.vkeyboard');
-        /**
-         * Keyboard show
-         */
-        inputDOM.addEventListener('focus', () => {
-            showKeyboard();
-        });
-        /**
-         * Keyboard show toggle
-         */
-        ['mousedown', 'touchstart'].forEach(function (e) {
-            window.addEventListener(e,mouseMoveHandler,false);
-        })
-        function mouseMoveHandler(e) {
-            if (
-                /**
-                 * Hide the keyboard when you're not clicking it or when clicking an input
-                 * If you have installed a "click outside" library, please use that instead.
-                 */
-                keyboard.options.theme.includes('show-keyboard') &&
-                !e.target.className.includes('input') &&
-                !e.target.className.includes('hg-button') &&
-                !e.target.className.includes('hg-row') &&
-                !e.target.className.includes('simple-keyboard')
-            ) {
-                hideKeyboard();
-            }
-        }
-
-        /**
-         * Update simple-keyboard when input is changed directly
-         */
-        inputDOM.addEventListener('input', event => {
-            keyboard.setInput(event.target.value);
-        });
-
-
-        function onChange(input) {
-            inputDOM.value = input;
-            console.log('Input changed', input);
-        }
-
-        function onKeyPress(button) {
-            console.log('Button pressed', button);
-
-            /**
-             * If you want to handle the shift and caps lock buttons
-             */
-            if (button === '{shift}' || button === '{lock}') {handleShift();}
-            if (button === '{numbers}' || button === '{abc}') {handleNumbers();}
-        }
-
-        function handleShift() {
-            let currentLayout = keyboard.options.layoutName;
-            let shiftToggle = currentLayout === 'default' ? 'shift' : 'default';
-
-            keyboard.setOptions({
-                layoutName: shiftToggle
-            });
-        }
-
-        function handleNumbers() {
-            let currentLayout = keyboard.options.layoutName;
-            let numbersToggle = currentLayout !== 'numbers' ? 'numbers' : 'default';
-
-            keyboard.setOptions({
-                layoutName: numbersToggle
-            });
-        }
-        function showKeyboard() {
-            keyboard.setOptions({
-                theme: `${defaultTheme} show-keyboard`
-            });
-        }
-        function hideKeyboard() {
-            keyboard.setOptions({
-                theme: defaultTheme
-            });
-        }
-
-        // Submit
-        const submitLabel = photoboothTools.getTranslation('save');
-        const submitButton = photoboothTools.button.create(submitLabel, 'fa fa-check', 'primary', 'modal-');
-        submitButton.id = 'set-image-name-submit';
-        submitButton.addEventListener('click', (event) => {
+        document.getElementById('set-image-name-submit').addEventListener('click', (event) => {
             event.preventDefault();
             event.stopPropagation();
             form.requestSubmit();
         });
-        buttonbar.insertBefore(submitButton, buttonbar.firstChild);
     };
 
     api.showQrCode = function (filename) {
@@ -1567,8 +1394,9 @@ const photoBooth = (function () {
 
     $('.takePic, .newpic').on('click', function (e) {
         e.preventDefault();
-        api.thrill(PhotoStyle.PHOTO);
-        $(this).trigger('blur');
+        api.saveImageWithName();
+        // api.thrill(PhotoStyle.PHOTO);
+        // $(this).trigger('blur');
     });
 
     $('.takeCollage, .newcollage').on('click', function (e) {

@@ -25,9 +25,8 @@ try {
 }
 
 $file = $_POST['image'];
-$firstName = filter_var($_POST['firstName'], FILTER_UNSAFE_RAW);
-$lastName = filter_var($_POST['lastName'], FILTER_UNSAFE_RAW);
-$newFileName = Helper::slugify($lastName . '_' . $firstName) . '_' . $file;
+$fullName = filter_var($_POST['fullName'], FILTER_UNSAFE_RAW);
+$newFileName = Helper::slugify($fullName) . '_' . $file;
 $logData['success'] = false;
 $logData = [];
 

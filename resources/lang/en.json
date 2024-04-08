@@ -268,6 +268,7 @@
   "mailSaved": "E-mail address saved successfully",
   "mailSent": "E-mail sent",
   "nameImage:success": "Rename of image done - Popup will close in 3 seconds",
+    "nameImage:fail": "Rename of image failed - Popup will close in 3 seconds",
   "manual:authentication:login_enabled": "If enabled, a username and password will be needed to access the adminpage and/or start screen (depending on your setup).",
   "manual:authentication:login_keypad": "Pincode for numeric login. (0-9) Must be 4 digits, otherwise numeric login will not be enabled.",
   "manual:authentication:login_password": "Define your password used for login. Please note: after saving your password will only be visible as a hash inside adminpanel. For login don't enter the hash, enter the password you have set.",

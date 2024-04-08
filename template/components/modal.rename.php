@@ -3,12 +3,11 @@
         <div class="modal-body">
             <p>Enter your full name</p>
             <form id="set-image-name" class="form">
-                <input type="hidden" name="image" value="undefined">
-                <input class="form-input vkeyboard" id="fullName" type="text" name="firstName" placeholder="Full name *">
-               <!-- <input class="form-input" id="firstName" type="text" name="firstName" placeholder="First name *">
-                <input class="form-input" id="lastName" type="text" name="lastName" placeholder="Last name *">-->
+                <input id="modal_rename_image" type="hidden" name="image" value="undefined">
+                <input class="form-input vkeyboard" id="fullName" type="text" name="fullName" placeholder="Full name *" required>
             </form>
         </div>
+        <div id="set-image-name-message" class="form-message" style="padding-left: 10px;padding-right: 10px"></div>
         <div class="modal-buttonbar">
             <button class="modal-button rotaryfocus" data-severity="primary" id="set-image-name-submit">
                 <span class="modal-button--icon">
@@ -25,6 +24,7 @@
         </div>
     </div>
 </div>
+
 <div class="simple-keyboard"></div>
 <?php
 use Photobooth\Service\AssetService;
