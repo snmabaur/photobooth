@@ -1133,8 +1133,10 @@ const photoBooth = (function () {
     }
 
     const modalRenameCloseHandler = function modalRenameClose(event) {
-        event.preventDefault();
-        event.stopPropagation();
+        if(event) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
         modalRename.style.display = 'none';
         abortController.abort('Remove EventListener AbortController')
         abortController = new AbortController()
