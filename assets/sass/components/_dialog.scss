@@ -4,16 +4,16 @@
 :root {
   --dialog-color: #313131;
   --dialog-background: #ffffff;
-  --dialog-font-size: inherit;
-  --dialog-line-height: inherit;
+  --dialog-font-size: 2rem;
+  --dialog-line-height: 1.3;
   --dialog-padding: 2rem;
   --dialog-spacing: 2rem;
 
   --dialog-button-color: var(--button-font-color);
   --dialog-button-background: var(--primary-color);
-  --dialog-button-font-size: 1rem;
+  --dialog-button-font-size: 2rem;
   --dialog-button-font-weight: 400;
-  --dialog-button-icon-size: 1rem;
+  --dialog-button-icon-size: 2rem;
   --dialog-button-padding-y: 1rem;
   --dialog-button-padding-x: 1rem;
   --dialog-button-border-width: 0;
@@ -21,7 +21,7 @@
   --dialog-button-border-radius: 0;
   --dialog-button-height: auto;
   --dialog-button-width: auto;
-  --dialog-button-gap: 0.25rem;
+  --dialog-button-gap: 1.25rem;
   --dialog-button-direction: row;
   --dialog-button-focus-background: color-mix(in srgb, var(--dialog-button-background), var(--dialog-button-color) 20%);
 }
