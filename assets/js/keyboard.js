@@ -48,7 +48,7 @@ $(function () {
      * Keyboard show
      */
     inputDOM.addEventListener('focus', () => {
-        // console.log('Show Keyboard')
+        console.log('Show Keyboard')
         showKeyboard();
     });
 
@@ -71,6 +71,7 @@ $(function () {
         }
     });
 
+
     /**
      * Update simple-keyboard when input is changed directly
      */
@@ -80,11 +81,11 @@ $(function () {
 
     function onChange(input) {
         inputDOM.value = input;
-        // console.log('Input changed', input);
+        console.log('Input changed', input);
     }
 
     function onKeyPress(button) {
-        // console.log('Button pressed', button);
+        console.log('Button pressed', button);
 
         /**
          * If you want to handle the shift and caps lock buttons
