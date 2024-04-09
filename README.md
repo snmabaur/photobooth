@@ -1,5 +1,15 @@
 # Photobooth v4
 
+
+## Updates of Alex Baur
+
+Update system
+```
+rm -f install-photobooth.sh
+wget https://raw.githubusercontent.com/snmabaur/photobooth/main/install-photobooth.sh
+sudo bash install-photobooth.sh --update --username='pi'
+```
+
 ![](resources/img/logo/banner.png)
 
 A Photobooth web interface for Linux and Windows.

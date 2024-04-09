@@ -7,7 +7,7 @@ $(function () {
         onKeyPress: (button) => onKeyPress(button),
         mergeDisplay: true,
         layoutName: 'default',
-        layout: {
+        /*layout: {
             default: [
                 'q w e r t z u i o p',
                 'a s d f g h j k l',
@@ -37,6 +37,22 @@ $(function () {
             '{metaleft}': 'cmd ⌘',
             '{metaright}': 'cmd ⌘',
             '{abc}': 'ABC'
+        }*/
+        layout: {
+            default: [
+                "q w e r t y u i o p {bksp}",
+                "a s d f g h j k l {enter}",
+                "z x c v b n m , . @",
+                "{space}"
+            ]
+        },
+        display: {
+            "{enter}": "return",
+            "{bksp}": "⌫",
+            "{downkeyboard}": "Enter",
+            "{space}": " ",
+            "{default}": "ABC",
+            "{back}": "⇦"
         }
     });
 
@@ -60,15 +76,20 @@ $(function () {
      * Keyboard show toggle
      */
     document.addEventListener('mousedown', (event) => {
+        console.log(event.target.className)
         if (
             /**
              * Hide the keyboard when you're not clicking it or when clicking an input
              * If you have installed a "click outside" library, please use that instead.
              */
+
             document.body.classList.contains('show-keyboard') &&
             !event.target.className.includes('input') &&
             !event.target.className.includes('hg-button') &&
             !event.target.className.includes('hg-row') &&
+            !event.target.className.includes('hg-functionBtn') &&
+            !event.target.className.includes('hg-layout-default') &&
+            !event.target.className.includes('hg-theme-default') &&
             !event.target.className.includes('vkeyboard') &&
             !event.target.className.includes('vkeyboardmail')
         ) {
@@ -99,19 +120,46 @@ $(function () {
         /**
          * If you want to handle the shift and caps lock buttons
          */
-        if (button === '{shift}' || button === '{lock}') {
+        /*if (button === '{shift}' || button === '{lock}') {
             handleShift();
+        }*/
+        if (button.includes("{") && button.includes("}")) {
+            handleLayoutChange(button);
         }
     }
 
-    function handleShift() {
+    function handleLayoutChange(button) {
+        let currentLayout = keyboard.options.layoutName;
+        let layoutName;
+
+        switch (button) {
+            case "{default}":
+                layoutName = currentLayout === "default" ? "shift" : "default";
+                break;
+
+            case "{enter}":
+                // layoutName = currentLayout ===  "default" ;
+                hideKeyboard()
+                break;
+
+            default:
+                break;
+        }
+
+        if (layoutName) {
+            keyboard.setOptions({
+                layoutName: layoutName
+            });
+        }
+    }
+    /*function handleShift() {
         let currentLayout = keyboard.options.layoutName;
         let shiftToggle = currentLayout === 'default' ? 'shift' : 'default';
 
         keyboard.setOptions({
             layoutName: shiftToggle
         });
-    }
+    }*/
 
     function showKeyboard() {
         document.body.classList.add('show-keyboard');
