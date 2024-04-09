@@ -4,7 +4,9 @@ use Photobooth\Utility\ComponentUtility;
 use Photobooth\Utility\PathUtility;
 
 echo '<div class="stage stage--result rotarygroup" data-stage="result">';
+include PathUtility::getAbsolutePath('template/components/modal.email.php');
 include PathUtility::getAbsolutePath('template/components/modal.rename.php');
+
 
 echo '<div class="stage-inner">';
 echo '<div class="buttonbar buttonbar--bottom">';

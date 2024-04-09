@@ -1,7 +1,7 @@
 $(function () {
     let Keyboard = window.SimpleKeyboard.default;
     // let defaultTheme = 'hg-theme-default';
-
+    console.log('test')
     let keyboard = new Keyboard({
         onChange: (input) => onChange(input),
         onKeyPress: (button) => onKeyPress(button),
@@ -42,11 +42,17 @@ $(function () {
 
     const inputDOM = document.querySelector('.vkeyboard');
 
+    const inputDOMMail = document.querySelector('.vkeyboardmail');
+
     /**
      * Keyboard show
      */
     inputDOM.addEventListener('focus', () => {
         console.log('Show Keyboard')
+        showKeyboard();
+    });
+    inputDOMMail.addEventListener('focus', () => {
+        console.log('Show Keyboard Mail')
         showKeyboard();
     });
 
@@ -63,7 +69,8 @@ $(function () {
             !event.target.className.includes('input') &&
             !event.target.className.includes('hg-button') &&
             !event.target.className.includes('hg-row') &&
-            !event.target.className.includes('vkeyboard')
+            !event.target.className.includes('vkeyboard') &&
+            !event.target.className.includes('vkeyboardmail')
         ) {
             hideKeyboard();
         }
@@ -76,9 +83,13 @@ $(function () {
     inputDOM.addEventListener('input', (event) => {
         keyboard.setInput(event.target.value);
     });
+    inputDOMMail.addEventListener('input', (event) => {
+        keyboard.setInput(event.target.value);
+    });
 
     function onChange(input) {
         inputDOM.value = input;
+        inputDOMMail.value = input;
         console.log('Input changed', input);
     }
 
