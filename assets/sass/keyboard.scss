@@ -5,6 +5,13 @@ body {
     position: fixed;
     bottom: 0;
     display: none;
+    &.hg-theme-default {
+      .hg-button {
+        height: 60px !important;
+        font-size: 26px;
+        color: #333;
+      }
+    }
   }
   &.show-keyboard {
     top: -185px;
