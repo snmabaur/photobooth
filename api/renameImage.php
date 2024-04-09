@@ -30,7 +30,7 @@ $newFileName = Helper::slugify($fullName) . '_' . $file;
 $logData['success'] = false;
 
 if(file_exists($config['foldersAbs']['namedImages'] . DIRECTORY_SEPARATOR . $newFileName)) {
-    $logData['fileExists'] = 'Same image already exists';
+    $logData['fileExists'] = 'Same image already exists - popup will close in 3 seconds';
 } else {
     if (!copy(
         $config['foldersAbs']['images'] . DIRECTORY_SEPARATOR . $file,

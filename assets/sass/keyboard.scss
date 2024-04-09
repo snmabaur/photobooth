@@ -2,7 +2,7 @@ body {
   top: 0;
   .simple-keyboard {
     z-index: 99999999999;
-    position: fixed;
+    position: absolute;
     bottom: 0;
     display: none;
     &.hg-theme-default {
@@ -14,12 +14,12 @@ body {
     }
   }
   &.show-keyboard {
-    top: -185px;
+    //top: -185px;
     .simple-keyboard {
       display: block;
     }
     .modal {
-      top: -185px;
+      //top: -185px;
     }
   }
 }
