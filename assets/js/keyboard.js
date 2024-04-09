@@ -6,7 +6,7 @@ $(function () {
         onChange: (input) => onChange(input),
         onKeyPress: (button) => onKeyPress(button),
         preventMouseUpDefault: true,
-        autoUseTouchEvents: true,
+        useTouchEvents: true,
         mergeDisplay: true,
         layoutName: 'default',
         layout: {
