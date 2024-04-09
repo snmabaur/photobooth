@@ -4,7 +4,7 @@
             <div class="modal-body">
                 <p>Enter your e-mail address to receive the photo.</p>
                 <input type="hidden" name="image" id="send-mail-image" value="">
-                <input class="form-input vkeyboardmail" id="send-mail-recipient-input" type="email" name="recipient">
+                <input class="form-input vkeyboardmail" id="send-mail-recipient-input" type="email" name="recipient" placeholder="E-Mail *" required>
             </div>
             <div id="send-mail-modal-message" class="form-message" style="padding-left: 10px;padding-right: 10px"></div>
             <div class="modal-buttonbar">

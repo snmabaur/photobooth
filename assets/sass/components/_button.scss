@@ -4,9 +4,9 @@
 :root {
   --button-color: var(--button-font-color);
   --button-background: var(--primary-color);
-  --button-font-size: 1rem;
+  --button-font-size: 2rem;
   --button-font-weight: 400;
-  --button-icon-size: 1rem;
+  --button-icon-size: 2rem;
   --button-padding-y: 1rem;
   --button-padding-x: 1rem;
   --button-border-width: 0;
@@ -94,26 +94,27 @@
 }
 
 [data-ui-button='modern_squared'] {
-  --button-font-size: 0.75rem;
-  --button-icon-size: 1.5rem;
+  --button-font-size: 1.75rem;
+  --button-icon-size: 2.5rem;
   --button-padding-y: 0;
   --button-padding-x: 0;
-  --button-width: 4rem;
-  --button-height: 4rem;
-  --button-gap: 0.45rem;
+  --button-width: 6rem;
+  --button-height: 6rem;
+  --button-gap: 1.45rem;
   --button-border-radius: 15%;
   --button-direction: column;
 
   @media (min-width: 1024px) {
-    --button-icon-size: 2rem;
-    --button-width: 5rem;
-    --button-height: 5rem;
+    --button-icon-size: 4rem;
+    --button-width: 10rem;
+    --button-height:10rem;
   }
 
   .button--label {
     text-overflow: ellipsis;
     overflow: hidden;
     max-width: calc(100% - 1rem);
+    line-height: 1.3;
   }
 }
 
@@ -125,7 +126,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap:var(--button-gap);
 
   &--middle {
     position: absolute;

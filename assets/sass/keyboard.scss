@@ -7,19 +7,22 @@ body {
     display: none;
     &.hg-theme-default {
       .hg-button {
-        height: 60px !important;
-        font-size: 26px;
+        height: 80px !important;
+        font-size: 42px;
         color: #333;
+        &.hg-activeButton {
+          background: #bababa;
+        }
       }
     }
   }
   &.show-keyboard {
-    //top: -185px;
+    //top: -345px;
     .simple-keyboard {
       display: block;
     }
     .modal {
-      //top: -185px;
+      //top: -345px;
     }
   }
 }
