@@ -51,7 +51,7 @@ if ($config['picture']['allow_delete']) {
 }
 
 if ($config['picture_naming']['enabled']) {
-    echo ComponentUtility::renderButton('Rename', $config['icons']['rename'], 'savebtn');
+    echo ComponentUtility::renderButton('saveImage', $config['icons']['rename'], 'savebtn');
 }
 
 echo '</div>';
