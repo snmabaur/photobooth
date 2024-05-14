@@ -1,13 +1,10 @@
 <?php
 
 use Photobooth\Environment;
-use Photobooth\Photobooth;
 use Photobooth\Helper;
 use Photobooth\Utility\ArrayUtility;
 use Photobooth\Utility\FileUtility;
 use Photobooth\Utility\PathUtility;
-
-$photobooth = new Photobooth();
 
 $cmds = [
     'windows' => [
@@ -65,39 +62,6 @@ $cmds = [
     ],
 ];
 
-$mailTemplates = [
-    'de' => [
-        'mail' => [
-            'subject' => 'Hier ist dein Bild',
-            'text' => 'Hey, dein Bild ist angehangen.',
-        ],
-    ],
-    'en' => [
-        'mail' => [
-            'subject' => 'Here is your picture',
-            'text' => 'Hey, your picture is attached.',
-        ],
-    ],
-    'es' => [
-        'mail' => [
-            'subject' => 'Aquí está tu foto',
-            'text' => 'Hola, tu foto está adjunta.',
-        ],
-    ],
-    'fr' => [
-        'mail' => [
-            'subject' => 'Voici votre photo',
-            'text' => 'Hé, ta photo est attachée.',
-        ],
-    ],
-    'hr' => [
-        'mail' => [
-            'subject' => 'Ovo je vaša slika',
-            'text' => 'Vaša slika je u prilogu',
-        ],
-    ],
-];
-
 require_once PathUtility::getAbsolutePath('config/config.inc.php');
 
 $operatingSystem = Environment::getOperatingSystem();
@@ -109,30 +73,10 @@ $config['nodebin']['cmd'] = $cmds[$operatingSystem]['nodebin']['cmd'];
 $config['reboot']['cmd'] = $cmds[$operatingSystem]['reboot']['cmd'];
 $config['shutdown']['cmd'] = $cmds[$operatingSystem]['shutdown']['cmd'];
 
-$config['adminpanel']['view_default'] = 'expert';
-
-$config['ui']['branding'] = 'Photobooth';
-
 $defaultConfig = $config;
 
 if (file_exists(PathUtility::getAbsolutePath('config/my.config.inc.php'))) {
     require_once PathUtility::getAbsolutePath('config/my.config.inc.php');
-
-    if (empty($config['mail']['subject'])) {
-        if (!empty($config['ui']['language'])) {
-            $config['mail']['subject'] = $mailTemplates[$config['ui']['language']]['mail']['subject'];
-        } else {
-            $config['mail']['subject'] = $mailTemplates[$defaultConfig['ui']['language']]['mail']['subject'];
-        }
-    }
-    if (empty($config['mail']['text'])) {
-        if (!empty($config['ui']['language'])) {
-            $config['mail']['text'] = $mailTemplates[$config['ui']['language']]['mail']['text'];
-        } else {
-            $config['mail']['text'] = $mailTemplates[$defaultConfig['ui']['language']]['mail']['text'];
-        }
-    }
-
     $config = ArrayUtility::mergeRecursive($defaultConfig, $config);
 }
 
@@ -162,6 +106,10 @@ foreach ($config['folders'] as $key => $folder) {
 FileUtility::createDirectory(PathUtility::getAbsolutePath('var/log'));
 FileUtility::createDirectory(PathUtility::getAbsolutePath('var/run'));
 $config['foldersAbs']['var'] = PathUtility::getAbsolutePath('var');
+
+FileUtility::createDirectory(PathUtility::getAbsolutePath('private/images/background'));
+FileUtility::createDirectory(PathUtility::getAbsolutePath('private/images/frames'));
+FileUtility::createDirectory(PathUtility::getAbsolutePath('private/images/logo'));
 
 $config['foldersPublic']['api'] = PathUtility::getPublicPath('api');
 $config['foldersPublic']['chroma'] = PathUtility::getPublicPath('chroma');
@@ -227,11 +175,11 @@ if (empty($config['background']['chroma'])) {
 }
 
 if (empty($config['webserver']['ip'])) {
-    $config['webserver']['ip'] = $photobooth->getIp();
+    $config['webserver']['ip'] = Environment::getIp();
 }
 
 if (empty($config['remotebuzzer']['serverip'])) {
-    $config['remotebuzzer']['serverip'] = $photobooth->getIp();
+    $config['remotebuzzer']['serverip'] = Environment::getIp();
 }
 
 if (empty($config['qr']['url'])) {
@@ -263,6 +211,3 @@ if (!empty($config['ftp']['urlTemplate'])) {
 
     $config['ftp']['processedTemplate'] = str_replace(array_keys($parameters), array_values($parameters), $config['ftp']['urlTemplate']);
 }
-
-$config['photobooth']['version'] = $photobooth->getVersion();
-$config['photobooth']['basePath'] = PathUtility::getPublicPath();
