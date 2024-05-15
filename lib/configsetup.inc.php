@@ -1,6 +1,7 @@
 <?php
 
 use Photobooth\Enum\ImageFilterEnum;
+use Photobooth\Service\LanguageService;
 use Photobooth\Utility\PathUtility;
 
 /*
@@ -117,12 +118,6 @@ $configsetup = [
                 'expert' => 'Expert View',
             ],
             'value' => $config['adminpanel']['view'],
-        ],
-        'adminpanel_view_default' => [
-            'view' => 'expert',
-            'type' => 'hidden',
-            'name' => 'adminpanel[view_default]',
-            'value' => $config['adminpanel']['view_default'],
         ],
         'adminpanel_experimental_settings' => [
             'view' => 'expert',
@@ -1839,14 +1834,14 @@ $configsetup = [
         'mail_subject' => [
             'view' => 'basic',
             'type' => 'input',
-            'placeholder' => '',
+            'placeholder' => LanguageService::getInstance()->translate('mail:sendPicture:subject'),
             'name' => 'mail[subject]',
             'value' => htmlentities($config['mail']['subject'] ?? ''),
         ],
         'mail_text' => [
             'view' => 'basic',
             'type' => 'input',
-            'placeholder' => '',
+            'placeholder' => LanguageService::getInstance()->translate('mail:sendPicture:text'),
             'name' => 'mail[text]',
             'value' => htmlentities($config['mail']['text'] ?? ''),
         ],
@@ -3109,12 +3104,6 @@ $configsetup = [
             'name' => 'icons[slideshow_toggle]',
             'placeholder' => $defaultConfig['icons']['slideshow_toggle'],
             'value' => $config['icons']['slideshow_toggle'],
-        ],
-        'ui_branding' => [
-            'view' => 'expert',
-            'type' => 'hidden',
-            'name' => 'ui[branding]',
-            'value' => $config['ui']['branding'],
         ],
     ],
     'jpeg_quality' => [
