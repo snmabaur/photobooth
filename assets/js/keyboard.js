@@ -1,7 +1,6 @@
 $(function () {
     let Keyboard = window.SimpleKeyboard.default;
     // let defaultTheme = 'hg-theme-default';
-    console.log('test')
     let keyboard = new Keyboard({
         onChange: (input) => onChange(input),
         onKeyPress: (button) => onKeyPress(button),
@@ -76,7 +75,6 @@ $(function () {
      * Keyboard show toggle
      */
     document.addEventListener('mousedown', (event) => {
-        console.log(event.target.className)
         if (
             /**
              * Hide the keyboard when you're not clicking it or when clicking an input
@@ -115,7 +113,6 @@ $(function () {
     }
 
     function onKeyPress(button) {
-        console.log('Button pressed', button);
 
         /**
          * If you want to handle the shift and caps lock buttons

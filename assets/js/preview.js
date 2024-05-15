@@ -109,7 +109,7 @@ const photoboothPreview = (function () {
         };
 
         jQuery
-            .post('api/previewCamera.php', dataVideo)
+            .post('/api/previewCamera.php', dataVideo)
             .done(function (result) {
                 photoboothTools.console.log('Preview: ' + dataVideo.play + ' webcam successfully.');
                 pid = result.pid;
