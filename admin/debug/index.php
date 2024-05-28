@@ -3,7 +3,6 @@
 require_once '../../lib/boot.php';
 
 use Photobooth\Environment;
-use Photobooth\Service\ApplicationService;
 use Photobooth\Service\AssetService;
 use Photobooth\Service\LanguageService;
 use Photobooth\Utility\PathUtility;
@@ -22,7 +21,7 @@ require_once PathUtility::getAbsolutePath('lib/configsetup.inc.php');
 
 $languageService = LanguageService::getInstance();
 $assetService = AssetService::getInstance();
-$pageTitle = 'Debugpanel - ' . ApplicationService::getInstance()->getTitle();
+$pageTitle = 'Debugpanel';
 include PathUtility::getAbsolutePath('admin/components/head.admin.php');
 include PathUtility::getAbsolutePath('admin/helper/index.php');
 include PathUtility::getAbsolutePath('admin/components/navItem.debug.php');

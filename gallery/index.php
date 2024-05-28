@@ -2,13 +2,12 @@
 
 require_once '../lib/boot.php';
 
-use Photobooth\Service\ApplicationService;
 use Photobooth\Service\AssetService;
 use Photobooth\Service\ProcessService;
 use Photobooth\Utility\PathUtility;
 
 $assetService = AssetService::getInstance();
-$pageTitle = 'Gallery - ' . ApplicationService::getInstance()->getTitle();
+$pageTitle = $config['ui']['branding'] . ' Gallery';
 $photoswipe = true;
 $randomImage = false;
 $remoteBuzzer = true;

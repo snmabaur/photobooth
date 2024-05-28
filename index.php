@@ -2,7 +2,6 @@
 
 require_once 'lib/boot.php';
 
-use Photobooth\Service\ApplicationService;
 use Photobooth\Service\AssetService;
 use Photobooth\Service\ProcessService;
 use Photobooth\Utility\PathUtility;
@@ -27,7 +26,7 @@ if (
     (!$config['protect']['localhost_index'] && (isset($_SERVER['SERVER_ADDR']) && $_SERVER['REMOTE_ADDR'] === $_SERVER['SERVER_ADDR'])) ||
     ((isset($_SESSION['auth']) && $_SESSION['auth'] === true) || !$config['protect']['index'])
 ) {
-    $pageTitle = ApplicationService::getInstance()->getTitle();
+    $pageTitle = $config['ui']['branding'];
     $photoswipe = true;
     $randomImage = false;
     $remoteBuzzer = true;

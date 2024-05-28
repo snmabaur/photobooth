@@ -56,7 +56,7 @@ if (Collage::createCollage($config, $collageSrcImagePaths, $filename_tmp, $confi
     header('Content-Type: image/jpeg');
 
     imagejpeg($imageResource);
-    unset($imageResource);
+    imagedestroy($imageResource);
     $imageHandler = null;
     unlink($filename_tmp);
 }

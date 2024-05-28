@@ -2,13 +2,12 @@
 
 require_once '../lib/boot.php';
 
-use Photobooth\Service\ApplicationService;
 use Photobooth\Service\LanguageService;
 use Photobooth\Utility\ComponentUtility;
 use Photobooth\Utility\PathUtility;
 
 $languageService = LanguageService::getInstance();
-$pageTitle = 'Remote Trigger - ' . ApplicationService::getInstance()->getTitle();
+$pageTitle = $config['ui']['branding'] . ' Remote Trigger';
 $photoswipe = false;
 $remoteBuzzer = false;
 

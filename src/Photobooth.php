@@ -1,21 +1,24 @@
 <?php
 
-namespace Photobooth\Service;
+namespace Photobooth;
 
-use Photobooth\Utility\PathUtility;
-
-class ApplicationService
+/**
+ * The Photobooth class holds information about the server and Photobooth installation.
+ */
+class Photobooth
 {
+    protected string $serverIp;
     protected string $version;
 
     public function __construct()
     {
+        $this->serverIp = Environment::isLinux() ? shell_exec('hostname -I | cut -d " " -f 1') : $_SERVER['HTTP_HOST'];
         $this->version = $this->calculatePhotoboothVersion();
     }
 
-    public function getTitle(): string
+    public function getIp(): string
     {
-        return 'Photobooth ' . $this->getVersion();
+        return $this->serverIp;
     }
 
     public function getVersion(): string
@@ -25,7 +28,7 @@ class ApplicationService
 
     protected function calculatePhotoboothVersion(): string
     {
-        $packageJsonPath = PathUtility::getRootPath() . DIRECTORY_SEPARATOR . '/package.json';
+        $packageJsonPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . '/package.json';
         if (!is_file($packageJsonPath)) {
             throw new \Exception('Package file not found.');
         }
@@ -74,20 +77,11 @@ class ApplicationService
         try {
             $remoteVersion = $this->getLatestRelease();
             $localVersion = $this->getVersion();
-            $updateAvailable = version_compare($localVersion, $remoteVersion, '<');
+            $updateAvailable = $localVersion != $remoteVersion;
 
             return $updateAvailable;
         } catch (\Exception $e) {
             return false;
         }
-    }
-
-    public static function getInstance(): self
-    {
-        if (!isset($GLOBALS[self::class])) {
-            throw new \Exception(self::class . ' instance does not exist in $GLOBALS.');
-        }
-
-        return $GLOBALS[self::class];
     }
 }

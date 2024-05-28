@@ -2,7 +2,6 @@
 
 require_once '../lib/boot.php';
 
-use Photobooth\Service\ApplicationService;
 use Photobooth\Service\LanguageService;
 use Photobooth\Service\ProcessService;
 use Photobooth\Utility\ComponentUtility;
@@ -31,7 +30,7 @@ if (is_array($imginfo)) {
 }
 
 $languageService = LanguageService::getInstance();
-$pageTitle = 'Chromakeying - ' . ApplicationService::getInstance()->getTitle();
+$pageTitle = $config['ui']['branding'] . ' Chromakeying';
 $photoswipe = false;
 $remoteBuzzer = true;
 

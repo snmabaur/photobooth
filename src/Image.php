@@ -480,7 +480,7 @@ class Image
 
             // Try to clear cache
             if (isset($new) && $new instanceof \GdImage) {
-                unset($new);
+                imagedestroy($new);
             }
 
             // Re-throw exception on loglevel > 1
@@ -577,7 +577,7 @@ class Image
 
             // Try to clear cache
             if (isset($new) && $new instanceof \GdImage) {
-                unset($new);
+                imagedestroy($new);
             }
 
             // Re-throw exception on loglevel > 1
@@ -639,7 +639,7 @@ class Image
 
             // Try to clear cache
             if (isset($new) && $new instanceof GdImage) {
-                unset($new);
+                imagedestroy($new);
             }
 
             // Re-throw exception on loglevel > 1
@@ -722,7 +722,7 @@ class Image
 
             // Clear cache
             if ($img instanceof GdImage) {
-                unset($img);
+                imagedestroy($img);
             }
 
             // Re-throw exception on loglevel > 1
@@ -1089,7 +1089,7 @@ class Image
             }
             // Try to clear cache
             if ($qrCode instanceof GdImage) {
-                unset($qrCode);
+                imagedestroy($qrCode);
             }
             $this->imageModified = true;
             return $imageResource;
@@ -1098,7 +1098,7 @@ class Image
 
             // Try to clear cache
             if ($qrCode instanceof GdImage) {
-                unset($qrCode);
+                imagedestroy($qrCode);
             }
 
             // Re-throw exception on loglevel > 1
@@ -1131,15 +1131,18 @@ class Image
 
             // We copy the image to which we want to apply the polariod effect in our new image.
             if (!imagecopy($img, $resource, 11, 11, 0, 0, imagesx($resource), imagesy($resource))) {
-                unset($img);
+                imagedestroy($img);
                 throw new \Exception('Cannot copy image.');
             }
+
+            // Clear cach
+            imagedestroy($resource);
 
             // Border color
             $color = intval(imagecolorallocate($img, 192, 192, 192));
             // We put a gray border to our image.
             if (!imagerectangle($img, 0, 0, imagesx($img) - 4, imagesy($img) - 4, $color)) {
-                unset($img);
+                imagedestroy($img);
                 throw new \Exception('Cannot add border.');
             }
 
@@ -1157,7 +1160,7 @@ class Image
                 !imageline($img, imagesx($img) - 2, 4, imagesx($img) - 2, imagesy($img) - 4, $gris2) ||
                 !imageline($img, imagesx($img) - 1, 6, imagesx($img) - 1, imagesy($img) - 4, $gris3)
             ) {
-                unset($img);
+                imagedestroy($img);
                 throw new \Exception('Cannot add shadow.');
             }
 
@@ -1183,8 +1186,8 @@ class Image
             $this->addErrorData($e->getMessage());
 
             // Try to clear cache
-            if (isset($img) && $img instanceof GdImage) {
-                unset($img);
+            if ($img instanceof GdImage) {
+                imagedestroy($img);
             }
 
             // Re-throw exception on loglevel > 1
@@ -1197,7 +1200,7 @@ class Image
         }
         $this->imageModified = true;
         // We destroy the image we have been working with
-        unset($img);
+        imagedestroy($img);
 
         // We return the rotated image
         return $rotatedImg;

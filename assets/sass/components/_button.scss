@@ -107,7 +107,7 @@
   @media (min-width: 1024px) {
     --button-icon-size: 4rem;
     --button-width: 10rem;
-    --button-height:10rem;
+    --button-height: 10rem;
   }
 
   .button--label {
@@ -126,7 +126,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap:var(--button-gap);
+  gap: var(--button-gap);
 
   &--middle {
     position: absolute;

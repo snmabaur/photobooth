@@ -1,6 +1,7 @@
 $(function () {
     let Keyboard = window.SimpleKeyboard.default;
     // let defaultTheme = 'hg-theme-default';
+    console.log('test');
     let keyboard = new Keyboard({
         onChange: (input) => onChange(input),
         onKeyPress: (button) => onKeyPress(button),
@@ -38,20 +39,15 @@ $(function () {
             '{abc}': 'ABC'
         }*/
         layout: {
-            default: [
-                "q w e r t z u i o p {bksp}",
-                "a s d f g h j k l {enter}",
-                "y x c v b n m . @",
-                "{space}"
-            ]
+            default: ['q w e r t z u i o p {bksp}', 'a s d f g h j k l {enter}', 'y x c v b n m . @', '{space}']
         },
         display: {
-            "{enter}": "return",
-            "{bksp}": "⌫",
-            "{downkeyboard}": "Enter",
-            "{space}": " ",
-            "{default}": "ABC",
-            "{back}": "⇦"
+            '{enter}': 'return',
+            '{bksp}': '⌫',
+            '{downkeyboard}': 'Enter',
+            '{space}': ' ',
+            '{default}': 'ABC',
+            '{back}': '⇦'
         }
     });
 
@@ -63,11 +59,11 @@ $(function () {
      * Keyboard show
      */
     inputDOM.addEventListener('focus', () => {
-        console.log('Show Keyboard')
+        console.log('Show Keyboard');
         showKeyboard();
     });
     inputDOMMail.addEventListener('focus', () => {
-        console.log('Show Keyboard Mail')
+        console.log('Show Keyboard Mail');
         showKeyboard();
     });
 
@@ -75,6 +71,7 @@ $(function () {
      * Keyboard show toggle
      */
     document.addEventListener('mousedown', (event) => {
+        console.log(event.target.className);
         if (
             /**
              * Hide the keyboard when you're not clicking it or when clicking an input
@@ -95,7 +92,6 @@ $(function () {
         }
     });
 
-
     /**
      * Update simple-keyboard when input is changed directly
      */
@@ -113,6 +109,7 @@ $(function () {
     }
 
     function onKeyPress(button) {
+        console.log('Button pressed', button);
 
         /**
          * If you want to handle the shift and caps lock buttons
@@ -120,7 +117,7 @@ $(function () {
         /*if (button === '{shift}' || button === '{lock}') {
             handleShift();
         }*/
-        if (button.includes("{") && button.includes("}")) {
+        if (button.includes('{') && button.includes('}')) {
             handleLayoutChange(button);
         }
     }
@@ -130,13 +127,13 @@ $(function () {
         let layoutName;
 
         switch (button) {
-            case "{default}":
-                layoutName = currentLayout === "default" ? "shift" : "default";
+            case '{default}':
+                layoutName = currentLayout === 'default' ? 'shift' : 'default';
                 break;
 
-            case "{enter}":
+            case '{enter}':
                 // layoutName = currentLayout ===  "default" ;
-                hideKeyboard()
+                hideKeyboard();
                 break;
 
             default:

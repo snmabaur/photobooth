@@ -65,13 +65,12 @@ const photoBooth = (function () {
     const renameImageForm = document.getElementById('set-image-name');
     const modalRename = document.getElementById('modal_rename');
     const renameImageInput = document.getElementById('modal_rename_image');
-    const setImageNameSubmitButton = document.getElementById('set-image-name-submit')
-    const modalRenameCloseButton = document.getElementById('modal_rename_close')
+    const setImageNameSubmitButton = document.getElementById('set-image-name-submit');
+    const modalRenameCloseButton = document.getElementById('modal_rename_close');
     const imageNameInput = document.getElementById('modal_rename_image');
     const fullNameInput = document.getElementById('fullName');
     const renameModalMessage = document.getElementById('set-image-name-message');
-    let abortController = new AbortController()
-
+    let abortController = new AbortController();
 
     let timeOut,
         chromaFile = '',
@@ -986,21 +985,23 @@ const photoBooth = (function () {
      * Send e-mail modal
      */
 
-    const mailModal = document.getElementById('modal_email')
-    const sendMailModalRecipientInput = document.getElementById('send-mail-recipient-input')
+    const mailModal = document.getElementById('modal_email');
+    const sendMailModalRecipientInput = document.getElementById('send-mail-recipient-input');
     const sendMailModalForm = document.getElementById('send-mail-form');
     const sendMailModalImageInput = document.getElementById('send-mail-image');
-    const sendMailModalSubmitButton = document.getElementById('send-mail-submit-button')
+    const sendMailModalSubmitButton = document.getElementById('send-mail-submit-button');
     const sendMailModalMessage = document.getElementById('send-mail-modal-message');
-    const sendMailModalCloseButton = document.getElementById('send-mail-close-button')
-    let sendMailAbortController = new AbortController()
+    const sendMailModalCloseButton = document.getElementById('send-mail-close-button');
+    let sendMailAbortController = new AbortController();
 
     api.showMailForm = function (image) {
-        mailModal.style.display = 'flex'
+        mailModal.style.display = 'flex';
 
-        sendMailModalRecipientInput.value = ''
+        sendMailModalRecipientInput.value = '';
 
-        sendMailModalForm.addEventListener('submit', (event) => sendMailModalSubmitFunctionHandler(event), { signal:sendMailAbortController.signal });
+        sendMailModalForm.addEventListener('submit', (event) => sendMailModalSubmitFunctionHandler(event), {
+            signal: sendMailAbortController.signal
+        });
 
         // Image
         sendMailModalImageInput.value = image;
@@ -1011,29 +1012,31 @@ const photoBooth = (function () {
             event.stopImmediatePropagation();
         });*/
 
-        sendMailModalCloseButton.addEventListener('click',(event) => sendMailModalCloseHandler(event), { signal:sendMailAbortController.signal });
+        sendMailModalCloseButton.addEventListener('click', (event) => sendMailModalCloseHandler(event), {
+            signal: sendMailAbortController.signal
+        });
     };
 
     function closeSendMailModal() {
         setTimeout(() => {
             sendMailModalRecipientInput.value = '';
             sendMailModalImageInput.value = '';
-            sendMailModalMessage.textContent = ''
+            sendMailModalMessage.textContent = '';
             sendMailModalForm.reset();
-            sendMailModalCloseHandler()
+            sendMailModalCloseHandler();
             // photoboothTools.reloadPage();
         }, 3000);
     }
     const sendMailModalCloseHandler = function modalSendMailClose(event) {
-        if(event) {
+        if (event) {
             event.preventDefault();
             event.stopPropagation();
         }
 
         mailModal.style.display = 'none';
-        sendMailAbortController.abort()
-        sendMailAbortController = new AbortController()
-    }
+        sendMailAbortController.abort();
+        sendMailAbortController = new AbortController();
+    };
 
     const sendMailModalSubmitFunctionHandler = function sendMailModalSubmitFunction(event) {
         event.preventDefault();
@@ -1054,22 +1057,20 @@ const photoBooth = (function () {
                     } else {
                         sendMailModalMessage.textContent = photoboothTools.getTranslation('mailSent');
                     }
-
                 } else {
                     sendMailModalMessage.classList.add('text-danger');
                     sendMailModalMessage.textContent = data.error;
                 }
-                closeSendMailModal()
+                closeSendMailModal();
                 sendMailModalSubmitButton.disabled = false;
             })
             .catch(() => {
                 sendMailModalMessage.classList.add('text-danger');
                 sendMailModalMessage.textContent = photoboothTools.getTranslation('mailError');
                 sendMailModalSubmitButton.disabled = false;
-                closeSendMailModal()
+                closeSendMailModal();
             });
-    }
-
+    };
 
     /**
      *
@@ -1099,7 +1100,7 @@ const photoBooth = (function () {
                     message.classList.add('text-success');
                     message.textContent = photoboothTools.getTranslation('nameImage:success');
                 } else {
-                    modalRenameCloseButton.disabled = true
+                    modalRenameCloseButton.disabled = true;
                     message.classList.add('text-danger');
                     if (data.fileExists) {
                         message.textContent = data.fileExists;
@@ -1107,10 +1108,9 @@ const photoBooth = (function () {
                     if (data.failedCopy) {
                         message.textContent = data.failedCopy;
                     }
-
                 }
                 closeRenameModal();
-                modalRenameCloseButton.disabled = false
+                modalRenameCloseButton.disabled = false;
                 setImageNameSubmitButton.disabled = false;
             })
             .catch(() => {
@@ -1119,7 +1119,7 @@ const photoBooth = (function () {
                 setImageNameSubmitButton.disabled = false;
                 closeRenameModal();
             });
-    }
+    };
 
     function closeRenameModal() {
         setTimeout(() => {
@@ -1127,27 +1127,31 @@ const photoBooth = (function () {
             fullNameInput.value = '';
             imageNameInput.value = '';
             renameImageForm.reset();
-            modalRenameCloseHandler()
+            modalRenameCloseHandler();
             // photoboothTools.reloadPage();
         }, 3000);
     }
 
     const modalRenameCloseHandler = function modalRenameClose(event) {
-        if(event) {
+        if (event) {
             event.preventDefault();
             event.stopPropagation();
         }
         modalRename.style.display = 'none';
-        abortController.abort('Remove EventListener AbortController')
-        abortController = new AbortController()
-    }
+        abortController.abort('Remove EventListener AbortController');
+        abortController = new AbortController();
+    };
     api.saveImageWithName = function (image) {
         modalRename.style.display = 'flex';
-        fullNameInput.value = ''
-        renameImageForm.addEventListener('submit', (event) => renameImageSubmitFunctionHandler(event), { signal:abortController.signal });
+        fullNameInput.value = '';
+        renameImageForm.addEventListener('submit', (event) => renameImageSubmitFunctionHandler(event), {
+            signal: abortController.signal
+        });
         // Set Image name
         renameImageInput.value = image;
-        modalRenameCloseButton.addEventListener('click',(event) => modalRenameCloseHandler(event), { signal:abortController.signal });
+        modalRenameCloseButton.addEventListener('click', (event) => modalRenameCloseHandler(event), {
+            signal: abortController.signal
+        });
     };
 
     api.showQrCode = function (filename) {

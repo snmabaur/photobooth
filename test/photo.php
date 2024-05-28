@@ -91,4 +91,4 @@ if ($config['textonpicture']['enabled']) {
 
 header('Content-Type: image/jpeg');
 imagejpeg($imageResource);
-unset($imageResource);
+imagedestroy($imageResource);

@@ -1,6 +1,5 @@
 <?php
 
-use Photobooth\Service\ApplicationService;
 use Photobooth\Service\AssetService;
 use Photobooth\Utility\MarkdownUtility;
 use Photobooth\Utility\PathUtility;
@@ -28,7 +27,7 @@ $assetService = AssetService::getInstance();
     <meta name="msapplication-TileColor" content="<?=$config['colors']['primary']?>">
     <meta name="theme-color" content="<?=$config['colors']['primary']?>">
 
-    <title>FAQ - <?= ApplicationService::getInstance()->getTitle() ?></title>
+    <title><?=$config['ui']['branding']?> FAQ</title>
 
     <!-- Favicon + Android/iPhone Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="<?=$assetService->getUrl('resources/img/apple-touch-icon.png')?>">

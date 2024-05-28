@@ -3,7 +3,6 @@
 require_once '../../lib/boot.php';
 
 use Photobooth\Helper;
-use Photobooth\Service\ApplicationService;
 use Photobooth\Service\LanguageService;
 use Photobooth\Utility\PathUtility;
 
@@ -20,7 +19,7 @@ if (!(
 require_once PathUtility::getAbsolutePath('lib/configsetup.inc.php');
 
 $languageService = LanguageService::getInstance();
-$pageTitle = 'Diskusage - ' . ApplicationService::getInstance()->getTitle();
+$pageTitle = 'Diskusage';
 include PathUtility::getAbsolutePath('admin/components/head.admin.php');
 include PathUtility::getAbsolutePath('admin/helper/index.php');
 
@@ -34,7 +33,8 @@ include PathUtility::getAbsolutePath('admin/helper/index.php');
                     <span class="fa fa-chevron-left text-brand-1 text-opacity-60 text-md hover:text-opacity-100 transition-all"></span>
                 </a>
                 <h2 class="text-brand-1 text-xl font-bold">
-                    <?= $languageService->translate('disk_usage') ?>
+                    <?= $config['ui']['branding'] ?>
+                    <?=$languageService->translate('disk_usage')?>
                 </h2>
             </div>
             <?php

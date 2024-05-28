@@ -2,7 +2,7 @@
 
 require_once '../lib/boot.php';
 
-use Photobooth\Service\ApplicationService;
+use Photobooth\Photobooth;
 use Photobooth\Service\LoggerService;
 
 header('Content-Type: application/json');
@@ -11,11 +11,11 @@ $logger = LoggerService::getInstance()->getLogger('main');
 $logger->debug(basename($_SERVER['PHP_SELF']));
 
 try {
-    $applicationService = ApplicationService::getInstance();
+    $photobooth = new Photobooth();
     $data = [
-        'updateAvailable' => $applicationService->checkUpdate(),
-        'currentVersion' => $applicationService->getVersion(),
-        'availableVersion' => $applicationService->getLatestRelease(),
+        'updateAvailable' => $photobooth->checkUpdate(),
+        'currentVersion' => $photobooth->getVersion(),
+        'availableVersion' => $photobooth->getLatestRelease(),
     ];
     $logger->info('Info', $data);
 } catch (\Exception $e) {

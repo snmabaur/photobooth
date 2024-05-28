@@ -2,14 +2,13 @@
 
 require_once '../lib/boot.php';
 
-use Photobooth\Service\ApplicationService;
 use Photobooth\Service\AssetService;
 use Photobooth\Service\LanguageService;
 use Photobooth\Utility\PathUtility;
 
 $languageService = LanguageService::getInstance();
 $assetService = AssetService::getInstance();
-$pageTitle = 'Slideshow - ' . ApplicationService::getInstance()->getTitle();
+$pageTitle = $config['ui']['branding'] . ' Slideshow';
 $photoswipe = true;
 $randomImage = $config['slideshow']['randomPicture'];
 $remoteBuzzer = false;

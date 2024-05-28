@@ -2,7 +2,6 @@
 
 require_once '../../lib/boot.php';
 
-use Photobooth\Service\ApplicationService;
 use Photobooth\Service\LanguageService;
 use Photobooth\Utility\FileUtility;
 use Photobooth\Utility\ImageUtility;
@@ -21,7 +20,7 @@ if (!(
 require_once PathUtility::getAbsolutePath('lib/configsetup.inc.php');
 
 $languageService = LanguageService::getInstance();
-$pageTitle = 'Image uploader - ' . ApplicationService::getInstance()->getTitle();
+$pageTitle = 'Image uploader';
 include PathUtility::getAbsolutePath('admin/components/head.admin.php');
 include PathUtility::getAbsolutePath('admin/helper/index.php');
 
@@ -73,7 +72,7 @@ if (isset($_POST['submit'])) {
             <div class="w-full max-w-xl h-144 rounded-lg p-8 bg-white flex flex-col shadow-xl">
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
                     <div class="w-full flex flex-col items-center justify-center text-2xl font-bold text-brand-1 mb-2">
-                        Image uploader
+                        <?= $config['ui']['branding'] ?> - Image uploader
                     </div>
 
                     <div class="relative">

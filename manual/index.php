@@ -2,7 +2,6 @@
 
 require_once '../lib/boot.php';
 
-use Photobooth\Service\ApplicationService;
 use Photobooth\Service\LanguageService;
 use Photobooth\Utility\PathUtility;
 
@@ -19,7 +18,7 @@ if (!(
 require_once PathUtility::getAbsolutePath('lib/configsetup.inc.php');
 
 $languageService = LanguageService::getInstance();
-$pageTitle = 'Manual - ' . ApplicationService::getInstance()->getTitle();
+$pageTitle = 'Manual';
 include PathUtility::getAbsolutePath('admin/components/head.admin.php');
 include PathUtility::getAbsolutePath('admin/helper/index.php');
 
@@ -31,7 +30,7 @@ include PathUtility::getAbsolutePath('admin/helper/index.php');
             <!-- body -->
             <div class="w-full h-full flex flex-1 flex-col md:flex-row mt-5 overflow-hidden">
 <?php
-$sidebarHeadline = 'Manual';
+$sidebarHeadline = $pageTitle;
 include PathUtility::getAbsolutePath('admin/components/sidebar.php');
 ?>
                 <div class="flex flex-1 flex-col bg-content-1 rounded-xl ml-5 mr-5 mb-5 md:ml-0 overflow-hidden">

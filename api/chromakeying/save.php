@@ -147,7 +147,7 @@ try {
         $imageHandler->addErrorData('Warning: Failed to resize image copy.');
     }
     if ($chromaCopyResource instanceof \GdImage) {
-        unset($chromaCopyResource);
+        imagedestroy($chromaCopyResource);
     }
 
     if ($applyEffects) {
@@ -184,7 +184,7 @@ try {
     }
 
     if ($thumbResource instanceof \GdImage) {
-        unset($thumbResource);
+        imagedestroy($thumbResource);
     }
 
     $imageHandler->jpegQuality = $config['jpeg_quality']['image'];
@@ -192,7 +192,7 @@ try {
         throw new \Exception('Failed to save image.');
     }
 
-    unset($imageResource);
+    imagedestroy($imageResource);
 
     // insert into database
     if ($config['database']['enabled']) {
@@ -207,10 +207,10 @@ try {
 } catch (\Exception $e) {
     // Try to clear cache
     if (isset($thumbResource) && $thumbResource instanceof \GdImage) {
-        unset($thumbResource);
+        imagedestroy($thumbResource);
     }
     if ($imageResource instanceof \GdImage) {
-        unset($imageResource);
+        imagedestroy($imageResource);
     }
     if (is_array($imageHandler->errorLog) && !empty($imageHandler->errorLog)) {
         $logger->debug('imageHandler->errorLog', $imageHandler->errorLog);

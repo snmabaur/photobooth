@@ -20,6 +20,10 @@ $logger->debug(basename($_SERVER['PHP_SELF']));
 $database = DatabaseManagerService::getInstance();
 
 try {
+    if (!extension_loaded('gd')) {
+        throw new \Exception('GD library not loaded! Please enable GD!');
+    }
+
     if (empty($_POST['file'])) {
         throw new \Exception('No file provided');
     }
@@ -176,7 +180,7 @@ try {
                 $imageHandler->addErrorData('Warning: Failed to resize chroma resource.');
             }
             if ($chromaCopyResource instanceof \GdImage) {
-                unset($chromaCopyResource);
+                imagedestroy($chromaCopyResource);
             }
         }
 
@@ -212,7 +216,7 @@ try {
         }
 
         if ($thumbResource instanceof \GdImage) {
-            unset($thumbResource);
+            imagedestroy($thumbResource);
         }
 
         $imageHandler->jpegQuality = $config['jpeg_quality']['image'];
@@ -246,7 +250,7 @@ try {
                 throw new \Exception('Failed to copy photo.');
             }
         }
-        unset($imageResource);
+        imagedestroy($imageResource);
 
         // insert into database
         if ($config['database']['enabled']) {
@@ -379,7 +383,7 @@ try {
 } catch (\Exception $e) {
     // Handle the exception
     if (isset($imageResource) && $imageResource instanceof \GdImage) {
-        unset($imageResource);
+        imagedestroy($imageResource);
     }
     if (isset($imageHandler) && is_array($imageHandler->errorLog) && !empty($imageHandler->errorLog)) {
         $logger->error('Error', $imageHandler->errorLog);
