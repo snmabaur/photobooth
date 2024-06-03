@@ -25,8 +25,11 @@ try {
 }
 $logData = [];
 $file = $_POST['image'];
+$email = filter_var($_POST['recipient'], FILTER_UNSAFE_RAW);
+$emailArray = explode('@',$email);
 $fullName = filter_var($_POST['fullName'], FILTER_UNSAFE_RAW);
-$newFileName = Helper::slugify($fullName) . '_' . $file;
+//$newFileName = Helper::slugify($fullName) . '_' . $file;
+$newFileName = Helper::slugify($emailArray[0]) . '_' . $file;
 $logData['success'] = false;
 
 if(file_exists($config['foldersAbs']['namedImages'] . DIRECTORY_SEPARATOR . $newFileName)) {

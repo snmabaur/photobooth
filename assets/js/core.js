@@ -1024,7 +1024,7 @@ const photoBooth = (function () {
             sendMailModalMessage.textContent = '';
             sendMailModalForm.reset();
             sendMailModalCloseHandler();
-            // photoboothTools.reloadPage();
+            photoboothTools.reloadPage();
         }, 3000);
     }
     const sendMailModalCloseHandler = function modalSendMailClose(event) {
@@ -1061,15 +1061,36 @@ const photoBooth = (function () {
                     sendMailModalMessage.classList.add('text-danger');
                     sendMailModalMessage.textContent = data.error;
                 }
-                closeSendMailModal();
+                // closeSendMailModal();
                 sendMailModalSubmitButton.disabled = false;
             })
             .catch(() => {
                 sendMailModalMessage.classList.add('text-danger');
                 sendMailModalMessage.textContent = photoboothTools.getTranslation('mailError');
                 sendMailModalSubmitButton.disabled = false;
+                // closeSendMailModal();
+            });
+
+        fetch(config.foldersPublic.api + '/renameImage.php', {
+            method: 'post',
+            body: new FormData(sendMailModalForm)
+        })
+            .then((response) => response.json())
+            .then(() => {
+                // closeRenameModal();
+                closeSendMailModal();
+                // modalRenameCloseButton.disabled = false;
+                // setImageNameSubmitButton.disabled = false;
+            })
+            .catch(() => {
+                // message.classList.add('text-danger');
+                // message.textContent = photoboothTools.getTranslation('nameImage:fail');
+                // setImageNameSubmitButton.disabled = false;
+                // closeRenameModal();
                 closeSendMailModal();
             });
+
+
     };
 
     /**

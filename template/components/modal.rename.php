@@ -25,13 +25,3 @@
         </form>
     </div>
 </div>
-
-<div class="simple-keyboard"></div>
-<?php
-use Photobooth\Service\AssetService;
-
-$assetService = AssetService::getInstance();
-echo '<script src="' . $assetService->getUrl('node_modules/simple-keyboard/build/index.js') . '"></script>';
-echo '<script src="' . $assetService->getUrl('resources/js/keyboard.js') . '"></script>';
-?>
-

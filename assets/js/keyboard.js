@@ -1,4 +1,5 @@
 $(function () {
+
     let Keyboard = window.SimpleKeyboard.default;
     // let defaultTheme = 'hg-theme-default';
     let keyboard = new Keyboard({
@@ -53,6 +54,8 @@ $(function () {
     const inputDOM = document.querySelector('.vkeyboard');
 
     const inputDOMMail = document.querySelector('.vkeyboardmail');
+    // const inputDOMMail = document.querySelector('.select2-search__field');
+
 
     /**
      * Keyboard show

@@ -2,6 +2,7 @@ version: "3.9"
 
 services:
   photobooth:
+    platform: linux/arm64
     build: .
     volumes:
       - ./:/app
@@ -10,6 +11,5 @@ services:
       - /app/vendor/
     ports:
       - "80:80"
-      - "443:443"
     environment:
       - COMPOSER_VERSION=2
