@@ -6,7 +6,7 @@ $assetService = AssetService::getInstance();
 
 echo '<script src="' . $assetService->getUrl('api/config.php') . '"></script>';
 echo '<script src="' . $assetService->getUrl('resources/js/tools.js') . '"></script>';
-
+echo '<script src="' . $assetService->getUrl('resources/js/getUsers.js') . '"></script>';
 
 if ($remoteBuzzer) {
     echo '<script src="' . $assetService->getUrl('node_modules/socket.io-client/dist/socket.io.min.js') . '"></script>';
