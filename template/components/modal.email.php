@@ -2,25 +2,27 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $(function () {
-        var snmUsers = sessionStorage.getItem('snmUsers')
-        const userData = JSON.parse(snmUsers).map((item, key) => {
-            return {
-                "id":key,
-                "text":`${item.node.lastname} ${item.node.firstname} `,
-                "email":item.node.email
-            }
-        })
-        $('.select2').select2({
-            data: userData,
-            dropdownParent: $("#modal_email"),
-            minimumResultsForSearch: -1
-        });
+        setTimeout(function (){
+            const snmUsers = sessionStorage.getItem('snmUsers')
+            const userData = JSON.parse(snmUsers).map((item, key) => {
+                return {
+                    "id":key,
+                    "text":`${item.node.lastname} ${item.node.firstname} `,
+                    "email":item.node.email
+                }
+            })
+            $('.select2').select2({
+                data: userData,
+                dropdownParent: $("#modal_email"),
+                minimumResultsForSearch: -1
+            });
 
-        $('.select2').on('select2:select', function (e) {
-            var data = e.params.data;
-            $('#send-mail-recipient-input').val(e.params.data.email)
+            $('.select2').on('select2:select', function (e) {
+                var data = e.params.data;
+                $('#send-mail-recipient-input').val(e.params.data.email)
 
-        });
+            });
+        },1000)
     })
 
 </script>
